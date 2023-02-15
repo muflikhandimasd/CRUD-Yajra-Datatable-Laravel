@@ -12,9 +12,21 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css"
         integrity="sha256-pODNVtK3uOhL8FUNWWvFQK0QoQoV3YA9wGGng6mbZ0E=" crossorigin="anonymous" />
+    <style>
+        /* CUSTOM TULISAN PROCESSING */
+        .dataTables_wrapper .dataTables_processing {
+            position: absolute;
+            top: 15% !important;
+            background: #FFFFCC;
+            border: 1px solid black;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+    </style>
     <!-- AKHIR STYLE CSS -->
 
 </head>
+
 
 <body>
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
@@ -202,6 +214,9 @@
         //script untuk memanggil data json dari server dan menampilkannya berupa datatable
         $(document).ready(function() {
             $('#table_pegawai').DataTable({
+                "language": {
+                    "processing": "Sedang memproses"
+                },
                 processing: true,
                 serverSide: true, //aktifkan server-side
                 ajax: {
@@ -260,7 +275,7 @@
                             iziToast.success({ //tampilkan iziToast dengan notif data berhasil disimpan pada posisi kanan bawah
                                 title: 'Data Berhasil Disimpan',
                                 message: '{{ Session('
-                                                                success ') }}',
+                                                                                                                                                                                                                                success ') }}',
                                 position: 'bottomRight'
                             });
                         },
@@ -315,7 +330,7 @@
                     iziToast.warning({ //tampilkan izitoast warning
                         title: 'Data Berhasil Dihapus',
                         message: '{{ Session('
-                                                delete ') }}',
+                                                                                                                                                                        delete ') }}',
                         position: 'bottomRight'
                     });
                 }
