@@ -6,6 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\NewUserController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\PostNoAjaxController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,5 +33,9 @@ Route::get('users/edit/{id}/', [NewUserController::class, 'edit']);
 Route::post('users/update', [NewUserController::class, 'update'])->name('users.update');
 Route::get('users/destroy/{id}/', [NewUserController::class, 'destroy']);
 
-Route::resource('posts', PostController::class);
+// Route::resource('posts', PostController::class);
+Route::get('posts', [PostNoAjaxController::class, "index"]);
+Route::get("create", [PostNoAjaxController::class, "create"]);
+Route::post('store', [PostNoAjaxController::class, "store"]);
+Route::post('upload', [PostNoAjaxController::class, "uploadImage"])->name('ck.upload');
 Route::resource('pegawai', PegawaiController::class)->except(['show', 'update']);
